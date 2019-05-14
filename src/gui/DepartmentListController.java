@@ -24,11 +24,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Department;
-import model.services.DepartmentServices;
+import model.services.DepartmentService;
 
 public class DepartmentListController implements Initializable {
 
-	private DepartmentServices service;
+	private DepartmentService service;
 
 	@FXML
 	private TableView<Department> tableViewDepartment;
@@ -49,7 +49,7 @@ public class DepartmentListController implements Initializable {
 
 	// Fundamento do principio SOLID para evitar acoplamento forte(Injecao de
 	// dependencia)
-	public void setDepartmentService(DepartmentServices service) {
+	public void setDepartmentService(DepartmentService service) {
 		this.service = service;
 	}
 
@@ -84,6 +84,7 @@ public class DepartmentListController implements Initializable {
 			//controlador da tela
 			DepartmentFormController controller = loader.getController();
 			controller.setDepartment(obj);
+			controller.setDepartmentService(new DepartmentService());
 			controller.updateFormData();
 
 			Stage dialogStage = new Stage();
